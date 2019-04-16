@@ -1,0 +1,44 @@
+{
+	"name": "germania-kg/jsondecoder",
+	"description": "Germania KG's JsonDecoder",
+
+	"authors": [
+		{
+			"name": "Carsten Witt",
+			"email": "carstenwitt@germania-kg.de",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Germania\\JsonDecoder\\": "src/"
+		}
+	},
+
+	"autoload-dev": {
+		"psr-4": { "tests\\": "tests/src" }
+	},	
+
+    "require": {
+    	"php": "^7.0",
+		"symfony/polyfill-php73": "^1.11",
+		"psr/http-message": "^1.0"
+    },
+
+	"require-dev": {
+		"friendsofphp/php-cs-fixer": "^2.12",
+		"php-coveralls/php-coveralls": "^2.0",
+		"phpunit/phpunit": "^5.7|^6.0|^7.0"
+	},
+
+  	"scripts": {
+		"phpcs": "php-cs-fixer fix -v --diff --dry-run --allow-risky=yes src/",
+		"phpcs-apply": "php-cs-fixer fix -vv --allow-risky=yes src/",
+ 		"phpunit": "phpunit --coverage-text",
+
+    	"test": [
+        	"@phpcs",
+        	"@phpunit"
+		]
+	}    
+}
