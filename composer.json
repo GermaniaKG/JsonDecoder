@@ -1,6 +1,6 @@
 {
 	"name": "germania-kg/jsondecoder",
-	"description": "Germania KG's JsonDecoder",
+	"description": " JSON decoding solution with JsonException support for older PHP versions",
 
 	"authors": [
 		{

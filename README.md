@@ -5,6 +5,8 @@
 
 # JsonDecoder
 
+**JSON decoding solution with JsonException support for older PHP versions**
+
 
 
 ## Installation with Composer
