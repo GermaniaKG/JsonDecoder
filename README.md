@@ -5,6 +5,15 @@
 
 # JsonDecoder
 
+**JSON decoding solution with JsonException support for older PHP versions**
+
+[![Packagist](https://img.shields.io/packagist/v/germania-kg/jsondecoder.svg?style=flat)](https://packagist.org/packages/germania-kg/jsondecoder)
+[![PHP version](https://img.shields.io/packagist/php-v/germania-kg/jsondecoder.svg)](https://packagist.org/packages/germania-kg/jsondecoder)
+[![Build Status](https://img.shields.io/travis/GermaniaKG/JsonDecoder.svg?label=Travis%20CI)](https://travis-ci.org/GermaniaKG/JsonDecoder)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GermaniaKG/JsonDecoder/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/JsonDecoder/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/GermaniaKG/JsonDecoder/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/JsonDecoder/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/GermaniaKG/JsonDecoder/badges/build.png?b=master)](https://scrutinizer-ci.com/g/GermaniaKG/JsonDecoder/build-status/master)
+
 
 
 ## Installation with Composer
