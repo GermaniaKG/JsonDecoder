@@ -26,7 +26,7 @@ class JsonDecoder
 	 * Does not use \JSON_THROW_ON_ERROR yet until PHP 7.3 runs on our server
      * but throws \JsonException as provided by Symfony PHP 7.3 Polyfill 
 	 * 
-	 * @param  string|ResponseInterface $response_body
+	 * @param  StreamInterface|ResponseInterface|string $response_body
 	 * @return string Decoded JSON response
      *
      * @throws JsonException
@@ -38,7 +38,7 @@ class JsonDecoder
 		if ($response_body instanceOf ResponseInterface):
 			$response_body = $response_body->getBody();
 		elseif ($response_body instanceOf StreamInterface):
-			$response_body = $response_body->__toString();
+			// noop
 		elseif (!is_string($response_body)):
 			throw new \InvalidArgumentException("String, StreamInterface, or ResponseInterface expected");
 		endif;
