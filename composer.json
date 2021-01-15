@@ -35,7 +35,7 @@
     },
 
     "scripts": {
-        "phpstan": "phpstan analyse --configuration phpstan.neon --level=4 --no-progress -vvv",
+        "phpstan": "phpstan analyse --configuration phpstan.neon --no-progress -vvv",
         "phpcs": "php-cs-fixer fix -v --diff --dry-run --allow-risky=yes src/",
         "phpcs-apply": "php-cs-fixer fix -vv --allow-risky=yes src/",
         "phpunit": "phpunit --coverage-text",
