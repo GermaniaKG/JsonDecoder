@@ -1,46 +1,48 @@
 {
-	"name": "germania-kg/jsondecoder",
-	"description": "Decode JSON in strings and PSR-7 messages. Supports JsonException on older PHP",
+    "name": "germania-kg/jsondecoder",
+    "description": "Decode JSON in strings and PSR-7 messages. Supports JsonException on older PHP",
 
-	"keywords": ["json", "json-decode", "psr-7"],
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Carsten Witt",
-			"email": "carstenwitt@germania-kg.de",
-			"role": "Developer"
-		}
-	],
-	"autoload": {
-		"psr-4": {
-			"Germania\\JsonDecoder\\": "src/"
-		}
-	},
-
-	"autoload-dev": {
-		"psr-4": { "tests\\": "tests/src" }
-	},
-
-    "require": {
-    	"php": "^7.0|^8.0",
-		"symfony/polyfill-php73": "^1.11",
-		"psr/http-message": "^1.0"
+    "keywords": ["json", "json-decode", "psr-7"],
+    "license": "MIT",
+    "authors": [{
+        "name": "Carsten Witt",
+        "email": "carstenwitt@germania-kg.de",
+        "role": "Developer"
+    }],
+    "autoload": {
+        "psr-4": {
+            "Germania\\JsonDecoder\\": "src/"
+        }
     },
 
-	"require-dev": {
-		"friendsofphp/php-cs-fixer": "^2.12",
-		"php-coveralls/php-coveralls": "^2.0",
-		"phpunit/phpunit": "^9.0"
-	},
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests/src"
+        }
+    },
 
-  	"scripts": {
-		"phpcs": "php-cs-fixer fix -v --diff --dry-run --allow-risky=yes src/",
-		"phpcs-apply": "php-cs-fixer fix -vv --allow-risky=yes src/",
- 		"phpunit": "phpunit --coverage-text",
+    "require": {
+        "php": "^7.0|^8.0",
+        "symfony/polyfill-php73": "^1.11",
+        "psr/http-message": "^1.0"
+    },
 
-    	"test": [
-        	"@phpcs",
-        	"@phpunit"
-		]
-	}
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.12",
+        "php-coveralls/php-coveralls": "^2.0",
+        "phpunit/phpunit": "^9.0",
+        "phpstan/phpstan": "^0.12"
+    },
+
+    "scripts": {
+        "phpstan": "phpstan analyse --configuration phpstan.neon --no-progress -vvv",
+        "phpcs": "php-cs-fixer fix -v --diff --dry-run --allow-risky=yes src/",
+        "phpcs-apply": "php-cs-fixer fix -vv --allow-risky=yes src/",
+        "phpunit": "phpunit --coverage-text",
+
+        "test": [
+            "@phpcs",
+            "@phpunit"
+        ]
+    }
 }
