@@ -30,7 +30,7 @@ class JsonDecoder
 	 * @param  StreamInterface|ResponseInterface|string $response_body
 	 * @return string Decoded JSON response
      *
-     * @throws JsonException
+     * @throws \JsonException
      *
      * @see https://github.com/symfony/polyfill-php73
 	 */
