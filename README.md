@@ -26,10 +26,9 @@ $ composer require germania-kg/jsondecoder
 
 ## Usage
 
-The callable **JsonDecoder** accepts the same parameters than described in PHP's documentation on [json_decode](https://www.php.net/manual/en/function.json-decode.php).
+The callable **JsonDecoder** accepts the same parameters than described in PHP's documentation on [json_decode](https://www.php.net/manual/en/function.json-decode.php). Additionally, it accepts some widely-used kinds of data:
 
-Additionally, it accepts some other widely-used variable types as well:
-
+- `Psr\Http\Message\MessageInterface`
 - `Psr\Http\Message\ResponseInterface`
 - `Psr\Http\Message\StreamInterface`
 - `string`
