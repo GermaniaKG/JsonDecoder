@@ -1,5 +1,6 @@
 {
 	"name": "germania-kg/jsondecoder",
+	"description": "Decode JSON in strings and PSR-7 messages. Supports JsonException on older PHP",
 
 	"keywords": ["json", "json-decode", "psr-7"],
 	"license": "MIT",
