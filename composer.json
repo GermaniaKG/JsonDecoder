@@ -1,7 +1,8 @@
 {
 	"name": "germania-kg/jsondecoder",
-	"description": " JSON decoding solution with JsonException support for older PHP versions",
 
+	"keywords": ["json", "json-decode", "psr-7"],
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Carsten Witt",
