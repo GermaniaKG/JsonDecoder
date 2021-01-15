@@ -5,7 +5,7 @@
 
 # JsonDecoder
 
-**JSON decoding solution with JsonException support for older PHP versions**
+**Decode JSON in strings and PSR-7 messages. Supports *JsonException* on older PHP**.
 
 [![Packagist](https://img.shields.io/packagist/v/germania-kg/jsondecoder.svg?style=flat)](https://packagist.org/packages/germania-kg/jsondecoder)
 [![PHP version](https://img.shields.io/packagist/php-v/germania-kg/jsondecoder.svg)](https://packagist.org/packages/germania-kg/jsondecoder)
