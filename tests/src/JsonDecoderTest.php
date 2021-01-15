@@ -7,19 +7,18 @@ use GuzzleHttp\Psr7\Response;
 class JsonDecoderTest extends \PHPUnit\Framework\TestCase
 {
 
-	public function testInvalidArgumentExceptionOnInvokation( )
+	public function testInvalidArgumentExceptionOnInvokation( ) : void
 	{
 		$sut = new JsonDecoder;
 		$this->expectException( \InvalidArgumentException::class );
 		$sut( 1 );
-
-	}	
+	}
 
 
 	/**
 	 * @dataProvider provideInvalidResponseStuff
 	 */
-	public function testExceptionOnInvalidResponseStuff( $invalid_response_body, $json_last_error_result )
+	public function testExceptionOnInvalidResponseStuff( string $invalid_response_body, int $json_last_error_result ) : void
 	{
 		// Mock response
 		$response = new Response(200, array(), $invalid_response_body);
@@ -30,9 +29,13 @@ class JsonDecoderTest extends \PHPUnit\Framework\TestCase
 		$this->expectException( \JsonException::class );
 		$sut( $response );
 
-	}	
+	}
 
-	public function provideInvalidResponseStuff()
+
+    /**
+     * @return array
+     */
+	public function provideInvalidResponseStuff() : array
 	{
 		return array(
 			[ "{'foo':'bar'}", -10 ],
@@ -48,13 +51,14 @@ class JsonDecoderTest extends \PHPUnit\Framework\TestCase
 			[ "Foo bar", \JSON_ERROR_UTF16 ],
 			[ false, \JSON_ERROR_SYNTAX ]
 		);
-	}	
+	}
 
 
 	/**
+     * @param mixed $data Valid data
 	 * @dataProvider provideValidResponseStuff
 	 */
-	public function testValidResponseStuff( $data )
+	public function testValidResponseStuff( $data ) : void
 	{
 		// Mock response
 		$response = new Response(200, array(), json_encode( $data ));
@@ -69,13 +73,13 @@ class JsonDecoderTest extends \PHPUnit\Framework\TestCase
 		$decoded = $sut( $response->getBody()->__toString(), "assoc" );
 		$this->assertEquals( $data, $decoded);
 
-	}	
+	}
 
-	public function provideValidResponseStuff()
+	public function provideValidResponseStuff() : array
 	{
 		return array(
 			[ array("foo" => "bar") ],
 			[ null ]
 		);
-	}	
+	}
 }
