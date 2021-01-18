@@ -41,7 +41,7 @@ class JsonDecoder
         elseif ($response_body instanceOf StreamInterface):
 			$response_body = $response_body->__toString();
         elseif (!is_string($response_body)):
-			throw new \InvalidArgumentException("String, StreamInterface, or ResponseInterface expected");
+			throw new \InvalidArgumentException("String, StreamInterface, or MessageInterface expected");
 		endif;
 
         // Make sure 'json_decode' throws \JsonException on PHP 7.3+,
