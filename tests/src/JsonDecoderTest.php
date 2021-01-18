@@ -18,12 +18,16 @@ class JsonDecoderTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider provideInvalidResponseStuff
      * @param mixed $invalid_response_body
+     * @param mixed $json_last_error_result
      */
-    public function testExceptionOnInvalidResponseStuff( $invalid_response_body, int $json_last_error_result ) : void
+    public function testExceptionOnInvalidResponseStuff( $invalid_response_body, $json_last_error_result ) : void
     {
         // Mock response
         $response = new Response(200, array(), $invalid_response_body);
-        $json_last_error_fn = function() use ($json_last_error_result) { return $json_last_error_result; };
+
+        $json_last_error_fn = !is_null($json_last_error_result)
+        ? function() use ($json_last_error_result) { return $json_last_error_result; }
+        : null;
 
         $sut = new JsonDecoder( $json_last_error_fn );
 
@@ -47,10 +51,12 @@ class JsonDecoderTest extends \PHPUnit\Framework\TestCase
             [ "Foo bar", \JSON_ERROR_SYNTAX ],
             [ "Foo bar", \JSON_ERROR_RECURSION ],
             [ "Foo bar", \JSON_ERROR_INF_OR_NAN ],
+            [ "Foo bar", null ],
             [ "Foo bar", \JSON_ERROR_UNSUPPORTED_TYPE ],
             [ "Foo bar", \JSON_ERROR_INVALID_PROPERTY_NAME ],
             [ "Foo bar", \JSON_ERROR_UTF16 ],
-            [ false, \JSON_ERROR_SYNTAX ]
+            [ false, \JSON_ERROR_SYNTAX ],
+            [ "{Aaa:'foo#truncated", null ],
         );
     }
 
