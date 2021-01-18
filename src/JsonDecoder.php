@@ -1,7 +1,7 @@
 <?php
 namespace Germania\JsonDecoder;
 
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\StreamInterface;
 
 class JsonDecoder
@@ -24,24 +24,24 @@ class JsonDecoder
 
 
 	/**
-	 * Does not use \JSON_THROW_ON_ERROR yet until PHP 7.3 runs on our server
-     * but throws \JsonException as provided by Symfony PHP 7.3 Polyfill
+	 * Json-decodes given PSR-7 message body or string.
+     * In case of decoding error a \JsonException will be thrown.
 	 *
-	 * @param  StreamInterface|ResponseInterface|string $response_body
+	 * @param  StreamInterface|MessageInterface|string $response_body
 	 * @return string Decoded JSON response
      *
-     * @throws \JsonException
+     * @throws \JsonException generic or as provided by Symfony PHP 7.3 Polyfill
      *
      * @see https://github.com/symfony/polyfill-php73
 	 */
 	public function __invoke( $response_body, bool $assoc = false, int $depth = 512, int $options = 0  )
 	{
-		if ($response_body instanceOf ResponseInterface):
-			$response_body = $response_body->getBody();
-		elseif ($response_body instanceOf StreamInterface):
-			// noop
-		elseif (!is_string($response_body)):
-			throw new \InvalidArgumentException("String, StreamInterface, or ResponseInterface expected");
+		if ($response_body instanceOf MessageInterface):
+			$response_body = $response_body->getBody()->__toString();
+        elseif ($response_body instanceOf StreamInterface):
+			$response_body = $response_body->__toString();
+        elseif (!is_string($response_body)):
+			throw new \InvalidArgumentException("String, StreamInterface, or MessageInterface expected");
 		endif;
 
         // Make sure 'json_decode' throws \JsonException on PHP 7.3+,
@@ -49,6 +49,7 @@ class JsonDecoder
             $options = $options | \JSON_THROW_ON_ERROR;
         }
 
+        // This now may throw \JsonException
         $response_decoded = json_decode($response_body, $assoc, $depth, $options);
 
         // Fallback for PHP < 7.3
