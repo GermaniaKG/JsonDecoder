@@ -28,6 +28,8 @@ class JsonDecoder
      * In case of decoding error a \JsonException will be thrown.
 	 *
 	 * @param  StreamInterface|MessageInterface|string $response_body
+     * @param  bool $assoc
+     * @param  int<1, max> $depth
 	 * @return string Decoded JSON response
      *
      * @throws \JsonException generic or as provided by Symfony PHP 7.3 Polyfill
